@@ -1,4 +1,5 @@
 using CarBuilder.Models;
+using CarBuilder.Models.DTO;
 
 List<PaintColor> paintColors = new List<PaintColor>()
 {
@@ -132,6 +133,36 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Add your API endpoints here
+
+app.MapGet("/wheels", () =>
+{
+    return wheels.Select(w => new WheelsDTO
+    {
+        Id = w.Id,
+        Price = w.Price,
+        Style = w.Style
+    });
+});
+
+app.MapGet("/wheels/{id}", (int id) =>
+{
+    Wheels wheel = wheels.FirstOrDefault(w => w.Id == id);
+
+    if (wheel == null)
+    {
+        return Results.NotFound();
+    }
+
+    return Results.Ok(new WheelsDTO
+    {
+        Id = wheel.Id,
+        Price = wheel.Price,
+        Style = wheel.Style
+    });
+});
+
+
+
 
 
 
