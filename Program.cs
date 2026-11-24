@@ -25,8 +25,37 @@ List<PaintColor> paintColors = new List<PaintColor>()
         Id = 4,
         Price = 250M,
         Color = "Spring Green"
-    },
+    }
 };
+
+List<Interior> interiors = new List<Interior>()
+{
+    new Interior
+    {
+        Id = 1,
+        Price = 500M,
+        Material = "Biege Fabric"
+    },
+    new Interior
+    {
+        Id = 2,
+        Price = 510M,
+        Material = "Charcoal Fabric"
+    },
+    new Interior
+    {
+        Id = 1,
+        Price = 550M,
+        Material = "White Leather"
+    },
+    new Interior
+    {
+        Id = 1,
+        Price = 550M,
+        Material = "Black Leather"
+    }
+};
+
 
 var builder = WebApplication.CreateBuilder(args);
 
