@@ -171,7 +171,22 @@ app.MapGet("/technologies", () =>
     });
 });
 
+app.MapGet("/technologies/{id}", (int id) =>
+{
+    Technology technology = technologies.FirstOrDefault(t => t.Id == id);
 
+    if (technology == null)
+    {
+        return Results.NotFound();
+    }
+
+    return Results.Ok(new TechnologyDTO
+    {
+        Id = technology.Id,
+        Price = technology.Price,
+        Package = technology.Package
+    });
+});
 
 
 app.Run();
