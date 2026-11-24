@@ -161,7 +161,15 @@ app.MapGet("/wheels/{id}", (int id) =>
     });
 });
 
-
+app.MapGet("/technologies", () =>
+{
+    return technologies.Select(t => new TechnologyDTO
+    {
+        Id = t.Id,
+        Price = t.Price,
+        Package = t.Package
+    });
+});
 
 
 
