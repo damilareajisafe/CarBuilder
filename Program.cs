@@ -44,15 +44,43 @@ List<Interior> interiors = new List<Interior>()
     },
     new Interior
     {
-        Id = 1,
+        Id = 3,
         Price = 550M,
         Material = "White Leather"
     },
     new Interior
     {
-        Id = 1,
+        Id = 4,
         Price = 550M,
         Material = "Black Leather"
+    }
+};
+
+List<Technology> technologies = new List<Technology>()
+{
+    new Technology
+    {
+        Id = 1,
+        Price = 1000M,
+        Package = "Basic Package"
+    },
+    new Technology
+    {
+        Id = 2,
+        Price = 1500M,
+        Package = "Navigation Package"
+    },
+    new Technology
+    {
+        Id = 3,
+        Price = 2000M,
+        Package = "Visibility Package"
+    },
+    new Technology
+    {
+        Id = 4,
+        Price = 2500M,
+        Package = "Ultra Package"
     }
 };
 
