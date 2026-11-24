@@ -84,6 +84,34 @@ List<Technology> technologies = new List<Technology>()
     }
 };
 
+List<Wheels> wheels = new List<Wheels>()
+{
+    new Wheels
+    {
+        Id = 1,
+        Price = 800M,
+        Style = "17-inch Pair Radial"
+    },
+    new Wheels
+    {
+        Id = 2,
+        Price = 900M,
+        Style = "17-inch Pair Radial Black"
+    },
+    new Wheels
+    {
+        Id = 3,
+        Price = 1000M,
+        Style = "18-inch Pair Spoke Silver"
+    },
+    new Wheels
+    {
+        Id = 4,
+        Price = 1100M,
+        Style = "18-inch Pair Spoke Black"
+    }
+};
+
 
 var builder = WebApplication.CreateBuilder(args);
 
