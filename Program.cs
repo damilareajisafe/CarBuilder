@@ -225,5 +225,21 @@ app.MapGet("/paintcolors", () =>
     });
 });
 
+app.MapGet("/paintcolors/{id}", (int id) =>
+{
+    PaintColor paintColor = paintColors.FirstOrDefault(p => p.Id == id);
+
+    if (paintColor == null)
+    {
+        return Results.NotFound();
+    }
+
+    return Results.Ok(new PaintColor
+    {
+        Id = paintColor.Id,
+        Price = paintColor.Price,
+        Color = paintColor.Color
+    });
+});
 
 app.Run();
