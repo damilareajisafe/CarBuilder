@@ -198,4 +198,21 @@ app.MapGet("/interiors", () =>
     });
 });
 
+app.MapGet("/interiors/{id}", (int id) =>
+{
+    Interior interior = interiors.FirstOrDefault(i => i.Id == id);
+
+    if (interior == null)
+    {
+        return Results.NotFound();
+    }
+
+    return Results.Ok(new InteriorDTO
+    {
+        Id = interior.Id,
+        Price = interior.Price,
+        Material = interior.Material
+    });
+});
+
 app.Run();
