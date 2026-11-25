@@ -215,4 +215,15 @@ app.MapGet("/interiors/{id}", (int id) =>
     });
 });
 
+app.MapGet("/paintcolors", () =>
+{
+    return paintColors.Select(p => new PaintColorDTO
+    {
+        Id = p.Id,
+        Price = p.Price,
+        Color = p.Color
+    });
+});
+
+
 app.Run();
