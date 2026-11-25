@@ -287,6 +287,53 @@ app.MapGet("/orders", () =>
     });
 });
 
+app.MapGet("/orders/{id}", (int id) =>
+{
+    Order order = orders.FirstOrDefault(o => o.Id == id);
 
+    if (order == null)
+    {
+        return Results.NotFound();
+    }
+
+    Wheels wheel = wheels.FirstOrDefault(w => w.Id == order.WheelId);
+    Technology technology = technologies.FirstOrDefault(t => t.Id == order.TechnologyId);
+    PaintColor paintColor = paintColors.FirstOrDefault(p => p.Id == order.PaintId);
+    Interior interior = interiors.FirstOrDefault(i => i.Id == order.InteriorId);
+
+    return Results.Ok(new OrderDTO
+    {
+        Id = order.Id,
+        Timestamp = order.Timestamp,
+        WheelId = order.WheelId,
+        Wheels = wheel == null ? null : new WheelsDTO
+        {
+            Id = wheel.Id,
+            Price = wheel.Price,
+            Style = wheel.Style
+        },
+        TechnologyId = order.TechnologyId,
+        Technology = technology == null ? null : new TechnologyDTO
+        {
+            Id = technology.Id,
+            Price = technology.Price,
+            Package = technology.Package
+        },
+        PaintId = order.PaintId,
+        PaintColor = paintColor == null ? null : new PaintColorDTO
+        {
+            Id = paintColor.Id,
+            Price = paintColor.Price,
+            Color = paintColor.Color
+        },
+        InteriorId = order.InteriorId,
+        Interior = interior == null ? null : new InteriorDTO
+        {
+            Id = interior.Id,
+            Price = interior.Price,
+            Material = interior.Material
+        }
+    });
+});
 
 app.Run();
