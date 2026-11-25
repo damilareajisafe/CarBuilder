@@ -188,5 +188,14 @@ app.MapGet("/technologies/{id}", (int id) =>
     });
 });
 
+app.MapGet("/interiors", () =>
+{
+    return interiors.Select(i => new InteriorDTO
+    {
+        Id = i.Id,
+        Price = i.Price,
+        Material = i.Material
+    });
+});
 
 app.Run();
