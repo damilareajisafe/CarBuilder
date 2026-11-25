@@ -234,12 +234,59 @@ app.MapGet("/paintcolors/{id}", (int id) =>
         return Results.NotFound();
     }
 
-    return Results.Ok(new PaintColor
+    return Results.Ok(new PaintColorDTO
     {
         Id = paintColor.Id,
         Price = paintColor.Price,
         Color = paintColor.Color
     });
 });
+
+app.MapGet("/orders", () =>
+{
+    return orders.Select(o =>
+    {
+        Wheels wheel = wheels.FirstOrDefault(w => w.Id == o.WheelId);
+        Technology technology = technologies.FirstOrDefault(t => t.Id == o.TechnologyId);
+        PaintColor paintColor = paintColors.FirstOrDefault(p => p.Id == o.PaintId);
+        Interior interior = interiors.FirstOrDefault(i => i.Id == o.InteriorId);
+
+        return new OrderDTO
+        {
+            Id = o.Id,
+            Timestamp = o.Timestamp,
+            WheelId = o.WheelId,
+            Wheels = wheel == null ? null : new WheelsDTO
+            {
+                Id = wheel.Id,
+                Price = wheel.Price,
+                Style = wheel.Style
+            },
+            TechnologyId = o.TechnologyId,
+            Technology = technology == null ? null : new TechnologyDTO
+            {
+                Id = technology.Id,
+                Price = technology.Price,
+                Package = technology.Package
+            },
+            PaintId = o.PaintId,
+            PaintColor = paintColor == null ? null : new PaintColorDTO
+            {
+                Id = paintColor.Id,
+                Price = paintColor.Price,
+                Color = paintColor.Color
+            },
+            InteriorId = o.InteriorId,
+            Interior = interior == null ? null : new InteriorDTO
+            {
+                Id = interior.Id,
+                Price = interior.Price,
+                Material = interior.Material
+            }
+        };
+    });
+});
+
+
 
 app.Run();
