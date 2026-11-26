@@ -12,5 +12,12 @@
         public PaintColor? PaintColor { get; set; }
         public int InteriorId { get; set; }
         public Interior? Interior { get; set; }
+        public decimal TotalCost
+        {
+            get
+            {
+                return Wheels.Price + Technology.Price + PaintColor.Price + Interior.Price;
+            }
+        }
     }
 }
