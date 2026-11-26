@@ -19,5 +19,6 @@
                 return Wheels.Price + Technology.Price + PaintColor.Price + Interior.Price;
             }
         }
+        public bool OrderFulfilled { get; set; }
     }
 }
