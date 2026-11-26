@@ -244,7 +244,7 @@ app.MapGet("/paintcolors/{id}", (int id) =>
 
 app.MapGet("/orders", () =>
 {
-    return orders.Select(o =>
+    return orders.Where(o => !o.OrderFulfilled).Select(o =>
     {
         Wheels wheel = wheels.FirstOrDefault(w => w.Id == o.WheelId);
         Technology technology = technologies.FirstOrDefault(t => t.Id == o.TechnologyId);
@@ -282,7 +282,8 @@ app.MapGet("/orders", () =>
                 Id = interior.Id,
                 Price = interior.Price,
                 Material = interior.Material
-            }
+            },
+            OrderFulfilled = o.OrderFulfilled
         };
     });
 });
@@ -332,7 +333,8 @@ app.MapGet("/orders/{id}", (int id) =>
             Id = interior.Id,
             Price = interior.Price,
             Material = interior.Material
-        }
+        },
+        OrderFulfilled = order.OrderFulfilled
     });
 });
 
